@@ -1,0 +1,46 @@
+.nav-content{
+    height: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    top:0;
+    box-shadow: 1px 1px 5px 1px rgb(133, 133, 133);
+}
+.nav-content a{
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #000;
+    font-weight: bold;
+}
+.nav-cat a{
+    cursor: pointer;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+}
+.nav-cat ul{
+    position: absolute;
+    right: 0;
+    top:2.1rem;
+    width: 20%;
+    padding: 0.2rem;
+    margin-right: 0.4rem;
+    background-color: white;
+    box-shadow: 1px 1px 5px 1px rgb(133, 133, 133);
+    text-align: center;
+    list-style-type: none;
+    padding: 0;
+    z-index: 2;
+    visibility: hidden;
+}
+.nav-cat ul li{
+    border: 1px solid #d3d3d3;
+    padding: 0.5rem;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis; /* create three dots of goes out of ul*/
+}
+.nav-cat ul li:hover{
+    background-color: #eeeeee;
+}

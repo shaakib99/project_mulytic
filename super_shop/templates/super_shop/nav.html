@@ -1,0 +1,15 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href={% static 'super_shop/css/nav.css' %}?{% now "U"%}>
+<script src={% static 'super_shop/js/nav.js' %}?{% now "U"%}></script>
+
+<nav class='nav-content'>
+    <a href='#'>{{app_title}}</a>
+    <div class='nav-cat'>
+        <a id='category-title'>Category</a>
+        <ul id='category-list'>
+            <li>Juice</li>
+            <li>Chcolate</li>
+            <li>Vegetables</li>
+        </ul>
+    </div>
+</nav>

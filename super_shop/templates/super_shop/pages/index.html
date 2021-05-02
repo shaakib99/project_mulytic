@@ -1,0 +1,12 @@
+{% extends 'super_shop/base.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href={% static 'super_shop/css/index.css' %}?{% now "U"%}>
+<div class='home-container'>
+    <form action='#' method='get' class='search-form'>
+        <input type='text' name='search-text' class='search-box' placeholder='Search here...'/>
+        <button type='submit'><img src= {% static 'super_shop/img/search.png' %} class='serach-icon' /> </button>
+    </form>
+</div>
+{% endblock content %}

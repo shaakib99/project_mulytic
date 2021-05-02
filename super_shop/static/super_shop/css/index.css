@@ -1,0 +1,32 @@
+.home-container{
+    margin-top: 1rem;
+}
+.search-form{
+    height: 3rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.search-form button{
+    background-color: transparent;
+    border: 1px solid #9c9c9c;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    cursor: pointer;
+}
+.serach-icon{
+    height: 1rem;
+    width: 1rem;
+    padding: 0;
+    margin: 0;
+}
+.search-box{
+    width: 40%;
+    height: 2rem;
+    outline: none;
+    border: 1px solid #9c9c9c;
+    border-right: none;
+    border-radius: 0.5rem 0 0 0.5rem;
+}

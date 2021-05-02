@@ -1,0 +1,22 @@
+{% comment %} 
+    It is basically the layout of the page,
+    where nav and sidebar will be consistent
+ {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title|default:'Super Shop'}}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href={% static 'super_shop/css/base.css' %}?{% now "U"%}>
+</head>
+<body>
+    <div class='container'> 
+        {% include 'super_shop/nav.html' with app_title=app_title|default:'Super Shop' %}
+
+        {% block content %}{% endblock content %}
+    </div>
+</body>
+</html>
