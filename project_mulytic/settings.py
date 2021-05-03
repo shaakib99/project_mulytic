@@ -36,6 +36,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'super_shop.middleware.custom_auth_middleware'
 ]
 
 ROOT_URLCONF = 'project_mulytic.urls'
@@ -64,8 +65,14 @@ WSGI_APPLICATION = 'project_mulytic.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS':{
+            'database':'project_mulytic',
+            'host': 'localhost',
+            'port': 8889,
+            'user':'root',
+            'password':'root'
+        }
     }
 }
 

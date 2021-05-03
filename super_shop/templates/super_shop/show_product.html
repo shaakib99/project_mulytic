@@ -2,13 +2,14 @@
 <link rel="stylesheet" type="text/css" href={% static 'super_shop/css/show_product.css' %}?{% now "U"%}>
 <div class='show_product'>
     {% if product_data %}
-        {% for p in product_data %}
-            <div class='product'>
+        {% for p in '01234567879' %}
+            <form class='product'>
                 <img src={% static 'super_shop/img/juice.jpeg' %} class='product-img'/>
                 <h4>Product Title</h4>
                 <h5>Price: ৳450</h5>
-                <a href='#'>Order now</a>
-            </div>
+                <input type = 'number' min = '0' max = '10' placeholder='Enter amount' required/>
+                <button type='submit'>Order now</button>
+            </form>
         {% endfor %}
     {% endif %}
 </div>

@@ -2,5 +2,8 @@ from django.urls import path
 from super_shop import views
 
 urlpatterns = [
-    path('',views.index,name='shop-home')
+    path('', views.login, name = 'shop-login'),
+    path('validate_login/', views.validate_login, name = 'validate_login'),
+    path('products/', views.products, name = 'show_products'),
+    path('products/<int:catid>', views.products, name = 'show_products')
 ]
