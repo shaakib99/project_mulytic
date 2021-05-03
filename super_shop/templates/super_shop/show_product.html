@@ -1,0 +1,14 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href={% static 'super_shop/css/show_product.css' %}?{% now "U"%}>
+<div class='show_product'>
+    {% if product_data %}
+        {% for p in product_data %}
+            <div class='product'>
+                <img src={% static 'super_shop/img/juice.jpeg' %} class='product-img'/>
+                <h4>Product Title</h4>
+                <h5>Price: ৳450</h5>
+                <a href='#'>Order now</a>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
