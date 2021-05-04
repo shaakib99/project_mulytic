@@ -41,6 +41,7 @@
     overflow: hidden;
     text-overflow: ellipsis; /* create three dots of goes out of ul*/
 }
+.nav-cat ul li a{}
 .nav-cat ul li:hover{
     background-color: #eeeeee;
 }

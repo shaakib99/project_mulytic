@@ -3,13 +3,13 @@
 <script src={% static 'super_shop/js/nav.js' %}?{% now "U"%}></script>
 
 <nav class='nav-content'>
-    <a href='#'>{{app_title}}</a>
+    <a href={% url 'shop-login' %}>{{app_title}}</a>
     <div class='nav-cat'>
         <a id='category-title'>Category</a>
         <ul id='category-list'>
-            <li>Juice</li>
-            <li>Chcolate</li>
-            <li>Vegetables</li>
+            {% for c in category %}
+                <li><a href={% url 'show_products_with_id' catid=c.id %} >{{c.name}}</a></li>
+            {% endfor %}
         </ul>
     </div>
 </nav>

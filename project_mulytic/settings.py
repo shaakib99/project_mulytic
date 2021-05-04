@@ -20,6 +20,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'super_shop',
+    'qr_code',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -37,3 +37,6 @@
     color: black;
     cursor: pointer;
 }
+.product-id{
+    display: none;
+}

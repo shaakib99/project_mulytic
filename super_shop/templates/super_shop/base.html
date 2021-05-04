@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class='container'> 
-        {% include 'super_shop/nav.html' with app_title=app_title|default:'Super Shop' %}
+        {% include 'super_shop/nav.html' with app_title=app_title|default:'Super Shop' category=category|default:False %}
 
         {% block content %}{% endblock content %}
     </div>

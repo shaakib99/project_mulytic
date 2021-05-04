@@ -9,8 +9,7 @@ def custom_auth_middleware(get_response):
 
     def check_if_accessing_authenticated_path(path, exception_path):
         for x in exception_path:
-            if reverse(x) == path:
-                return False
+            if reverse(x) == path: return False
         return True
 
     def middleware(request):
