@@ -13,3 +13,4 @@
 
 - ❌ Can not order multiple products at a time(cart system). Please visit my client side cart system project https://shaakib99.github.io/spectacle-shop/
 - ❌ Less JS for other validation purposes.
+- ❌ Terrible styling.
