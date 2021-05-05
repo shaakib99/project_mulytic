@@ -7,9 +7,11 @@
     <div class='nav-cat'>
         <a id='category-title'>Category</a>
         <ul id='category-list'>
-            {% for c in category %}
-                <li><a href={% url 'show_products_with_id' catid=c.id %} >{{c.name}}</a></li>
-            {% endfor %}
+            {% if category %}
+                {% for c in category %}
+                    <li><a href={% url 'show_products_with_id' catid=c.id %} >{{c.name}}</a></li>
+                {% endfor %}
+            {% endif %}
         </ul>
     </div>
 </nav>
