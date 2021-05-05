@@ -1,4 +1,4 @@
-from .models import User, Category,Product
+from .models import Category
 from django.shortcuts import render,redirect
 from django.urls import reverse
 from io import BytesIO
@@ -11,7 +11,7 @@ def logout(request):
         del request.session['uid']
     return redirect(reverse('shop-login'))
 
-def user_authenticated(phone = '', email = ''):
+def user_authenticated(User, phone = '', email = ''):
     if phone.strip() == '' or email.strip() == '':
         return False
     try:
@@ -29,23 +29,29 @@ def category(f):
         return render(data['request'], data['template'],data)
     return x
 
-def get_product_by_id(product_id):
+def get_product_by_id(product_id, Product):
     try:
         detail = Product.objects.get(id=product_id)
         return detail
     except:
         return False
 
-def get_logged_user_detail(request):
+def get_logged_user_detail(request, User):
     if request.session.get('uid'):
         user = User.objects.get(id = request.session['uid'])
         return user
     return False
 
-def download_pdf():
+def download_pdf(user,product_data):
+    total = 0
+    for x in product_data:
+        total += x.amount * x.price
+
+    qr_text = f'name: {user.name} email: {user.email} phone:{user.phone}'
+
     # Copied from https://codeburst.io/django-render-html-to-pdf-41a2b9c41d16
     template = get_template('super_shop/html_pdf.html')
-    html = template.render({})
+    html = template.render({'qr_text':qr_text, 'product_data': product_data, 'total': total})
     response = BytesIO()
     pdf = pisa.pisaDocument(BytesIO(html.encode("UTF-8")), response)
     if not pdf.err:

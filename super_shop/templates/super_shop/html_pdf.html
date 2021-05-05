@@ -6,11 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     {% load qr_code %}
+    {% load super_shop_mul %}
+    <style>
+        th,td{
+            text-align: center;
+            height: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        {% qr_from_text "Hello World!" size="M"  image_format="png" %}
-        <table>
+        <p>Logo here</p>
+        {% if qr_text %}
+            {% qr_from_text qr_text size="T"  image_format="png" %}
+        {% endif %}
+        <table border=1>
             <tbody>
             <tr>
                 <th>SL no.</th>
@@ -19,17 +29,17 @@
                 <th>QTY</th>
                 <th>Total</th>
              </tr>
-             {% for i in '35457568578678' %}
-            <tr>
-                <td>1</td>
-                <td>Orange</td>
-                <td>100</td>
-                <td>5</td>
-                <td>500</td>
-            </tr>
+             {% for p in product_data %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{p.title}}</td>
+                    <td>{{p.price|default:0}}</td>
+                    <td>{{p.amount}}</td>
+                    <td>{{p.amount|multiply:p.price}}</td>
+                </tr>
              {% endfor %}
-             <td colspan='4'>Total</td>
-             <td>500</td>
+             <td colspan='4' style="text-align: left;">Total</td>
+             <td>{{total}}</td>
             </tbody>
         </table>
     </div>

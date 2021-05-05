@@ -7,6 +7,4 @@ urlpatterns = [
     path('products/', views.products, name = 'show_products'),
     path('products/<int:catid>', views.products, name = 'show_products_with_id'),
     path('order/', views.order, name = 'shop-order'),
-
-    path('qr', views.qr)
 ]

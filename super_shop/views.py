@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.urls import reverse
 from .models import User, Product, Orders
 from .view_helper import download_pdf, user_authenticated, category, get_product_by_id, get_logged_user_detail, logout
+import json
 
 LOGIN_PAGE = 'super_shop/pages/login.html'
 PRODUCT_PAGE = 'super_shop/pages/index.html'
@@ -19,7 +20,7 @@ def validate_login(request):
 
     if email == '' or phone == '': return # Raise Error
 
-    valid_user = user_authenticated(phone=phone, email=email)
+    valid_user = user_authenticated(User, phone=phone, email=email)
     
     request.session['uid'] = valid_user.id if valid_user else User(name = name, phone=phone, email= email).save().id
     
@@ -44,24 +45,34 @@ def products(request, catid = None):
     # return render(request, PRODUCT_PAGE, data)
 
 def order(request):
-    return download_pdf()
     if not request.POST: return
+
+    # Below code for processing only single item
 
     product_id = request.POST['product-id']
     amount = int(request.POST['amount'])
 
-    product_detail = get_product_by_id(product_id)
+    product_detail = get_product_by_id(product_id, Product)
     if not product_detail or amount > product_detail.stock: return
+    product_detail.amount = amount
 
-    user = get_logged_user_detail(request)
+    user = get_logged_user_detail(request, User)
     if not user: return
+
+    # order details to be saved in the database
+    product_detail_dict = {
+        'title': product_detail.title,
+        'amount': amount,
+        'PPU': product_detail.price,
+        'date':'date'
+    }
     # save orders
-    Orders(userid=user, productid=product_detail,amount = amount).save()
+    Orders(userid=user, product_detail=json.dumps(product_detail_dict)).save()
 
     # update stock
     Product.objects.filter(id = product_detail.id).update(stock = product_detail.stock - amount)
 
-    return HttpResponse('Done')
-
-def qr(request):
-    return render(request, 'super_shop/html_pdf.html')
+    # passing product_detail as an array to the download_pdf
+    # so that download_pdf can calculate total for multiple products
+    product_detail = [product_detail]
+    return download_pdf(user, product_detail)

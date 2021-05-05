@@ -8,7 +8,7 @@ class Product(models.Model):
     title = models.CharField(max_length=50, blank = False)
     catid = models.ForeignKey(Category,on_delete=models.CASCADE, blank = False)
     stock = models.IntegerField(blank = False)
-
+    price = models.FloatField(blank = False, default = None)
 class User(models.Model):
     id = models.AutoField(primary_key = True)
     name = models.CharField(max_length=50)
@@ -18,5 +18,6 @@ class User(models.Model):
 class Orders(models.Model):
     id = models.AutoField(primary_key = True)
     userid = models.ForeignKey(User, on_delete=models.CASCADE)
-    productid = models.ForeignKey(Product, on_delete=models.CASCADE)
-    amount = models.IntegerField(blank = False, default = None)
+    # productid = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product_detail = models.CharField(blank = False, max_length=1000, default=None)
+    # amount = models.IntegerField(blank = False, default = None)
