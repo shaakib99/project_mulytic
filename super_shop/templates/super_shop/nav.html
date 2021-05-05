@@ -1,0 +1,15 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href={% static 'super_shop/css/nav.css' %}?{% now "U"%}>
+<script src={% static 'super_shop/js/nav.js' %}?{% now "U"%}></script>
+
+<nav class='nav-content'>
+    <a href={% url 'shop-login' %}>{{app_title}}</a>
+    <div class='nav-cat'>
+        <a id='category-title'>Category</a>
+        <ul id='category-list'>
+            {% for c in category %}
+                <li><a href={% url 'show_products_with_id' catid=c.id %} >{{c.name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</nav>

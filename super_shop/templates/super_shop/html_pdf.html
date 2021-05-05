@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    {% load qr_code %}
+    {% load super_shop_mul %}
+    <style>
+        th,td{
+            text-align: center;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Logo here</p>
+        {% if qr_text %}
+            {% qr_from_text qr_text size="T"  image_format="png" %}
+        {% endif %}
+        <table border=1>
+            <tbody>
+            <tr>
+                <th>SL no.</th>
+                <th>Item</th>
+                <th>Unit Price</th>
+                <th>QTY</th>
+                <th>Total</th>
+             </tr>
+             {% for p in product_data %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{p.title}}</td>
+                    <td>{{p.price|default:0}}</td>
+                    <td>{{p.amount}}</td>
+                    <td>{{p.amount|multiply:p.price}}</td>
+                </tr>
+             {% endfor %}
+             <td colspan='4' style="text-align: left;">Total</td>
+             <td>{{total}}</td>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

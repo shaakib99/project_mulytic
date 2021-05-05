@@ -1,0 +1,22 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href={% static 'super_shop/css/show_product.css' %}?{% now "U"%}>
+
+<div class='show_product'>
+    {% if product_data %}
+        {% for p in product_data%}
+            <form class='product' action={% url 'shop-order' %} method = 'post'>
+                {% csrf_token %}
+                <input type='text' value={{p.id}} class='product-id' name='product-id'/>
+                <img src={% static 'super_shop/img/juice.jpeg' %} class='product-img'/>
+                <h4>{{p.title}}</h4>
+                <h5>{{p.price|default:'Undefined'}}</h5>
+                <input name='amount' type = 'number' min = '1' max = {{p.stock}} placeholder='Enter amount' required/>
+                <button type='submit'>Order now</button>
+            </form>
+        {% endfor %}
+    {% endif %}
+    
+    {% if not product_data %}
+        <h3> No product found</h3>
+    {% endif %}
+</div>
