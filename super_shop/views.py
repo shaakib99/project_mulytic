@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.urls import reverse
 from .models import User, Product, Orders
-from .view_helper import download_pdf, user_authenticated, category, get_product_by_id, get_logged_user_detail, logout
+from .view_helper import download_pdf, user_authenticated, category, get_data_by_id, get_logged_user_detail, logout
 import json
 
 LOGIN_PAGE = 'super_shop/pages/login.html'
@@ -52,11 +52,12 @@ def order(request):
     product_id = request.POST['product-id']
     amount = int(request.POST['amount'])
 
-    product_detail = get_product_by_id(product_id, Product)
+    product_detail = get_data_by_id(id = product_id, model = Product)
     if not product_detail or amount > product_detail.stock: return
     product_detail.amount = amount
-
-    user = get_logged_user_detail(request, User)
+    
+    if request.session.get('uid') == None: return
+    user = get_data_by_id(id = request.session['uid'], model = User)
     if not user: return
 
     # order details to be saved in the database
