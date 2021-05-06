@@ -29,18 +29,13 @@ def category(f):
         return render(data['request'], data['template'],data)
     return x
 
-def get_product_by_id(product_id, Product):
+def get_product_by_id(id = None, model = None):
+    if id == None or model == None: return
     try:
-        detail = Product.objects.get(id=product_id)
+        detail = model.objects.get(id=id)
         return detail
     except:
         return False
-
-def get_logged_user_detail(request, User):
-    if request.session.get('uid'):
-        user = User.objects.get(id = request.session['uid'])
-        return user
-    return False
 
 def download_pdf(user,product_data):
     total = 0
