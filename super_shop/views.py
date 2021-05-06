@@ -22,7 +22,7 @@ def validate_login(request):
 
     valid_user = user_authenticated(User, phone=phone, email=email)
     
-    request.session['uid'] = valid_user.id if valid_user else User(name = name, phone=phone, email= email).save().id
+    request.session['uid'] = valid_user.id if valid_user else User.objects.create(name = name, phone=phone, email= email).id
     
     return redirect('show_products')
 
