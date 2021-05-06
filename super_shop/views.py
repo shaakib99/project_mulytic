@@ -33,9 +33,9 @@ def products(request, catid = None):
         search_text = request.GET['search-text']
     
     if catid != None:
-        product_data = Product.objects.filter(catid = catid, title__icontains = search_text)
+        product_data = Product.objects.filter(catid = catid, title__icontains = search_text, stock__gt = 0)
     else:
-        product_data = Product.objects.filter(title__icontains = search_text)
+        product_data = Product.objects.filter(title__icontains = search_text, stock__gt = 0)
 
     
     data = {'product_data': product_data, 'template': PRODUCT_PAGE,'request': request}
