@@ -29,7 +29,7 @@ def category(f):
         return render(data['request'], data['template'],data)
     return x
 
-def get_product_by_id(id = None, model = None):
+def get_data_by_id(id = None, model = None):
     if id == None or model == None: return
     try:
         detail = model.objects.get(id=id)
