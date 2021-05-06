@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.urls import reverse
 from .models import User, Product, Orders
-from .view_helper import download_pdf, user_authenticated, category, get_data_by_id, get_logged_user_detail, logout
+from .view_helper import download_pdf, user_authenticated, category, get_data_by_id, logout
 import json
 
 LOGIN_PAGE = 'super_shop/pages/login.html'
