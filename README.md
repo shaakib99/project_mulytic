@@ -4,8 +4,8 @@
 
 #### Usage
 - Does not require any pin or password or extra credential. You can login just typing your info in the rquired fields.
-- Once you login, You can order single item by typing the order amount(Curently integer value are working ) then pressing order button on the item card.
-- Pressing the order button will take you to the pdf page showing your order information.
+- Once you login, You can order single item by typing the order amount(Curently integer value are working ) then clicking order button on the item card.
+- Clicking the order button will take you to the pdf page showing your order information.
 
 ## Installation
 - Create a python virtual env and activate this created env [How to create virtual environment in python?](https://docs.python.org/3/tutorial/venv.html)
